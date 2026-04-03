@@ -1,0 +1,24 @@
+{
+  "app": {
+    "title": "ذكر",
+    "logoLetter": "ذ"
+  },
+  "nav": {
+    "home": "الرئيسية",
+    "azkar": "الأذكار",
+    "hadith": "الأحاديث",
+    "duas": "الأدعية",
+    "prayerTimes": "مواقيت الصلاة",
+    "quran": "القرآن",
+    "toggleDarkMode": "تبديل الوضع الليلي"
+  },
+  "footer": {
+    "copyright": "© {year} تطبيق ذكر. جميع الحقوق محفوظة."
+  },
+  "common": {
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
+    "noData": "لا توجد بيانات متاحة",
+    "loading": "جاري التحميل..."
+  }
+}

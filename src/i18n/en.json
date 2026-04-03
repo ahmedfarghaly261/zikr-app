@@ -1,0 +1,24 @@
+{
+  "app": {
+    "title": "Zikr",
+    "logoLetter": "Z"
+  },
+  "nav": {
+    "home": "Home",
+    "azkar": "Azkar",
+    "hadith": "Hadith",
+    "duas": "Duas",
+    "prayerTimes": "Prayer Times",
+    "quran": "Quran",
+    "toggleDarkMode": "Toggle Dark Mode"
+  },
+  "footer": {
+    "copyright": "© {year} Zikr App. All rights reserved."
+  },
+  "common": {
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "noData": "No data available",
+    "loading": "Loading..."
+  }
+}
