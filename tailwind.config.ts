@@ -6,7 +6,12 @@ export default {
     "./src/**/*.{vue,ts,js,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Cairo', 'sans-serif'],
+        cairo: ['Cairo', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 } satisfies Config

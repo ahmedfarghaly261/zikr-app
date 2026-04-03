@@ -1,1 +1,7 @@
 @import "tailwindcss";
+@config "../../tailwind.config.ts";
+
+body {
+  font-family: "Cairo", sans-serif;
+  direction: rtl;
+}

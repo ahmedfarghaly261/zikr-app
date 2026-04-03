@@ -12,6 +12,10 @@
     "quran": "Quran",
     "toggleDarkMode": "Toggle Dark Mode"
   },
+  "hero": {
+    "subtitle": "A comprehensive app for Islamic remembrances, hadith, prayers, and Quranic verses",
+    "cta": "Get Started"
+  },
   "footer": {
     "copyright": "© {year} Zikr App. All rights reserved."
   },
@@ -20,5 +24,15 @@
     "confirm": "Confirm",
     "noData": "No data available",
     "loading": "Loading..."
+  },
+  "prayer": {
+    "nextPrayer": "Next Prayer",
+    "timeRemaining": "Time Remaining",
+    "fajr": "Fajr Prayer",
+    "dhuhr": "Dhuhr Prayer",
+    "asr": "Asr Prayer",
+    "maghrib": "Maghrib Prayer",
+    "isha": "Isha Prayer",
+    "remaining": "{h}h {m}m remaining"
   }
 }
