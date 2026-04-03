@@ -29,7 +29,7 @@
 
     <!-- time remaining badge (Left side in RTL) -->
     <div class="flex flex-col items-center justify-center gap-1.5
-                rounded-xl px-6 py-4 min-w-[180px]
+                rounded-xl px-6 py-4 min-w-45
                 bg-white/20 backdrop-blur-sm border border-white/10">
       <span class="text-sm font-semibold text-white/90">
         {{ t('prayer.timeRemaining') }}
