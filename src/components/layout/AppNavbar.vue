@@ -49,11 +49,10 @@ const toggleMobileMenu = () => {
 
         <!-- Center - Desktop Navigation -->
         <div class="hidden lg:flex items-center gap-1">
-          <a
+          <router-link
             v-for="item in navigation"
             :key="item.href"
-            href="#"
-            @click.prevent
+            :to="item.href"
             :class="[
               'px-4 py-2 rounded-lg transition-all flex items-center gap-2 font-medium',
               route.path === item.href
@@ -63,7 +62,7 @@ const toggleMobileMenu = () => {
           >
             <component :is="item.icon" class="w-4 h-4" />
             <span>{{ item.name }}</span>
-          </a>
+          </router-link>
         </div>
 
         <!-- Left side - Dark mode toggle -->
@@ -83,11 +82,11 @@ const toggleMobileMenu = () => {
     <!-- Mobile menu -->
     <div v-if="isMobileMenuOpen" class="lg:hidden border-t border-gray-200 bg-white">
       <div class="px-2 pt-2 pb-3 space-y-1">
-        <a
+        <router-link
           v-for="item in navigation"
           :key="item.href"
-          href="#"
-          @click.prevent="isMobileMenuOpen = false"
+          :to="item.href"
+          @click="isMobileMenuOpen = false"
           :class="[
             'flex items-center gap-3 px-3 py-2 rounded-lg transition-colors font-medium',
             route.path === item.href
@@ -97,7 +96,7 @@ const toggleMobileMenu = () => {
         >
           <component :is="item.icon" class="w-5 h-5" />
           <span>{{ item.name }}</span>
-        </a>
+        </router-link>
       </div>
     </div>
   </nav>

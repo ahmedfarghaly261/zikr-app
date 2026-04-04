@@ -1,7 +1,6 @@
 export interface Azkar {
-  id: string
-  title: string
-  content: string
-  count?: number
-  category?: string
+  id: number
+  count: number
+  current: number
+  textKey: string 
 }
