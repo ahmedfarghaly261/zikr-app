@@ -1,6 +1,8 @@
 export interface Dua {
-  id: string
-  title: string
-  content: string
-  category?: string
+  id: number
+  titleKey: string
+  textKey: string
+  sourceKey: string
+  categoryKey: string
+  isFavorite: boolean
 }
