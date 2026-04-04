@@ -13,7 +13,7 @@
 .app-sidebar {
   width: 250px;
   background-color: #fafafa;
-  border-right: 1px solid #e0e0e0;
+  border-inline-end: 1px solid #e0e0e0;
   padding: 1rem;
 }
 

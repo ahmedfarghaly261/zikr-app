@@ -34,5 +34,37 @@
     "maghrib": "Maghrib Prayer",
     "isha": "Isha Prayer",
     "remaining": "{h}h {m}m remaining"
+  },
+  "features": {
+    "athkar": {
+      "title": "Azkar",
+      "desc": "Morning and evening remembrances"
+    },
+    "hadith": {
+      "title": "Hadith",
+      "desc": "Noble prophetic traditions"
+    },
+    "adeia": {
+      "title": "Duas",
+      "desc": "Supplications from Quran and Sunnah"
+    },
+    "prayer": {
+      "title": "Prayer Times",
+      "desc": "Prayer times based on your location"
+    },
+    "quran": {
+      "title": "Quran",
+      "desc": "Read and listen to the Quran"
+    },
+    "hadithCard": {
+      "dailyTitle": "Today's Hadith",
+      "text": "Whoever says 'Subhanallah wa bihamdihi' one hundred times a day, his sins will be erased even if they are like the foam of the sea",
+      "source": "Narrated by Bukhari and Muslim"
+    },
+    "athkarCard": {
+      "dailyTitle": "Today's Dhikr",
+      "text": "Subhanallah wa bihamdihi, Subhanallah al-Adheem",
+      "source": "Narrated by Bukhari"
+    }
   }
 }

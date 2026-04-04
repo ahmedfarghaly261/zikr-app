@@ -4,13 +4,11 @@
     class="flex items-center justify-between
            rounded-2xl px-8 py-6 w-full
            font-cairo shadow-sm transition-all"
-    :dir="locale === 'ar' ? 'rtl' : 'ltr'"
     style="background: linear-gradient(to right, #509774, #bbd6c6);"
   >
-    <!-- prayer info (Right side in RTL) -->
+    <!-- prayer info -->
     <div
-      class="flex flex-col gap-1"
-      :class="locale === 'ar' ? 'items-start text-right' : 'items-start text-left'"
+      class="flex flex-col gap-1 items-start text-start"
     >
       <span class="text-sm font-semibold text-white/90 mb-1">
         {{ t('prayer.nextPrayer') }}
@@ -19,15 +17,14 @@
         {{ t(`prayer.${nextPrayer}`) }}
       </h2>
       <div 
-        class="flex items-center gap-1.5 text-base font-medium text-white/90"
-        :class="locale === 'ar' ? 'flex-row' : 'flex-row'"
+        class="flex flex-row items-center gap-1.5 text-base font-medium text-white/90"
       >
         <time class="font-bold tracking-wider" dir="ltr">{{ prayerTime }}</time>
         <Clock class="w-4 h-4" />
       </div>
     </div>
 
-    <!-- time remaining badge (Left side in RTL) -->
+    <!-- time remaining badge -->
     <div class="flex flex-col items-center justify-center gap-1.5
                 rounded-xl px-6 py-4 min-w-45
                 bg-white/20 backdrop-blur-sm border border-white/10">
@@ -55,7 +52,7 @@ const props = defineProps<{
   minutesLeft: number
 }>()
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
 useArabicFont()
 
 const remainingFormatted = computed(() =>
@@ -67,8 +64,4 @@ const remainingFormatted = computed(() =>
 </script>
 
 <style scoped>
-div[dir="rtl"] {
-  direction: rtl;
-}
-
 </style>

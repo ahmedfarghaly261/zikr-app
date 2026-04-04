@@ -5,6 +5,7 @@ import HeroSection from '../components/heroSec.vue'
 import { computed } from 'vue';
 import { Heart, BookOpen, BookMarked, Clock, BookText } from 'lucide-vue-next'
 import ContentSec from '../components/contentSec.vue';
+import TodayHadith from '../components/todayHadith.vue';
 
 const { t } = useI18n()
 
@@ -58,7 +59,7 @@ const bottomRow = computed(() => features.slice(3))
         <br>
         <PrayersTimesCard next-prayer="dhuhr" prayer-time="12:30" :hours-left="1" :minutes-left="1" />
 
-          <section dir="rtl" class="p-6 font-cairo">
+          <section class="p-6 font-cairo">
     <div class="grid grid-cols-3 gap-4 mb-4">
       <ContentSec
         v-for="f in topRow"
@@ -81,6 +82,11 @@ const bottomRow = computed(() => features.slice(3))
     </div>
   </section>
 
+  <TodayHadith
+  :title="$t('features.hadithCard.dailyTitle')"
+  :text="$t('features.hadithCard.text')"
+  :source="$t('features.hadithCard.source')"
+  />
     </section>
 
 
