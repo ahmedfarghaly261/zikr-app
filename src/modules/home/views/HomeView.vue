@@ -6,6 +6,7 @@ import { computed } from 'vue';
 import { Heart, BookOpen, BookMarked, Clock, BookText } from 'lucide-vue-next'
 import ContentSec from '../components/contentSec.vue';
 import TodayHadith from '../components/todayHadith.vue';
+import TodayZiker from '../components/todayZiker.vue';
 
 const { t } = useI18n()
 
@@ -86,6 +87,13 @@ const bottomRow = computed(() => features.slice(3))
   :title="$t('features.hadithCard.dailyTitle')"
   :text="$t('features.hadithCard.text')"
   :source="$t('features.hadithCard.source')"
+  />
+  <TodayZiker
+    :title="$t('features.athkarCard.dailyTitle')"
+    :text="$t('features.athkarCard.text')"
+    :source="$t('features.athkarCard.source')"
+    :iconColor="$t('features.athkarCard.iconColor')"
+    :accentColor="$t('features.athkarCard.accentColor')"
   />
     </section>
 
