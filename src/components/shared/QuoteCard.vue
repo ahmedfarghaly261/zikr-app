@@ -1,10 +1,10 @@
 <template>
   <div
-    class="bg-white border border-gray-100 rounded-2xl p-5 font-cairo"
+    class="bg-card text-card-text border border-gray-100 rounded-2xl p-5 font-cairo"
   >
     <!-- header -->
     <div class="flex items-center  gap-2 mb-4 ">
-      <span class="text-[15px] font-bold text-gray-900 text-start">{{ title }}</span>
+      <span class="text-[15px] font-bold text-start">{{ title }}</span>
       <component
         :is="icon"
         class="w-5 h-5"

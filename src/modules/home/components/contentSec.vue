@@ -12,13 +12,13 @@ defineProps<{
 <template>
   <RouterLink
     :to="route"
-    class="bg-white border border-gray-100 rounded-2xl p-6
+    class="bg-card border border-gray-100 rounded-2xl p-6
            flex flex-col items-start gap-2.5 cursor-pointer
            hover:border-emerald-200 hover:shadow-sm
            transition-all font-cairo no-underline"
   >
     <div
-      class="w-[52px] h-[52px] rounded-[14px] flex items-center justify-center"
+      class="w-13 h-13 rounded-[14px] flex items-center justify-center"
       :style="{ background: iconGradient }"
     >
       <component :is="icon" class="w-6 h-6 text-white" :stroke-width="1.8" />

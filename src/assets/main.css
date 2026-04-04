@@ -2,6 +2,8 @@
 @config "../../tailwind.config.ts";
 
 body {
+  background-color: var(--color-background, #faf9f7);
+  color: #374151;
   font-family: "Cairo", sans-serif;
   direction: rtl;
 }

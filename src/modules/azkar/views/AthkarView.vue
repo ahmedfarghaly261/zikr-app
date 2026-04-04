@@ -31,7 +31,7 @@ function handleReset(id: number) {
 </script>
 
 <template>
-  <main dir="rtl" class="max-w-5xl mx-auto px-2 py-8 font-cairo space-y-6">
+  <main class="max-w-5xl mx-auto px-2 py-8 font-cairo space-y-6">
 
     <!-- header -->
     <div class="text-center space-y-1">
@@ -44,7 +44,7 @@ function handleReset(id: number) {
       <button
         class="flex-1 py-3 rounded-lg text-sm font-semibold transition-all"
         :class="activeTab === 'morning'
-          ? 'bg-white text-emerald-600 shadow-sm'
+          ? 'bg-card text-primary shadow-sm'
           : 'text-gray-500 hover:text-gray-700'"
         @click="activeTab = 'morning'"
       >
@@ -53,7 +53,7 @@ function handleReset(id: number) {
       <button
         class="flex-1 py-3 rounded-lg text-sm font-semibold transition-all"
         :class="activeTab === 'evening'
-          ? 'bg-white text-emerald-600 shadow-sm'
+          ? 'bg-card text-primary shadow-sm'
           : 'text-gray-500 hover:text-gray-700'"
         @click="activeTab = 'evening'"
       >

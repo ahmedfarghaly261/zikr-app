@@ -26,7 +26,7 @@ const toggleMobileMenu = () => {
 </script>
 
 <template>
-  <nav class="bg-card sticky shadow-lg top-0 z-50 transition-colors">
+  <nav class="bg-card sticky shadow-lg top-0 z-50 transition-colors bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <!-- Right side - Logo -->
@@ -56,8 +56,8 @@ const toggleMobileMenu = () => {
             :class="[
               'px-4 py-2 rounded-lg transition-all flex items-center gap-2 font-medium',
               route.path === item.href
-                ? 'bg-[#2f855a] text-white shadow-sm'
-                : 'text-gray-700 hover:bg-[#2f855a] hover:text-white'
+                ? 'bg-primary text-white shadow-sm'
+                : 'text-gray-700 hover:bg-primary hover:text-white'
             ]"
           >
             <component :is="item.icon" class="w-4 h-4" />
@@ -90,9 +90,9 @@ const toggleMobileMenu = () => {
           :class="[
             'flex items-center gap-3 px-3 py-2 rounded-lg transition-colors font-medium',
             route.path === item.href
-              ? 'bg-green-600 text-white'
-              : 'text-gray-700 hover:bg-green-600 hover:text-white'
-          ]"
+                ? 'bg-primary text-white'
+                : 'text-gray-700 hover:bg-primary hover:text-white'
+            ]"
         >
           <component :is="item.icon" class="w-5 h-5" />
           <span>{{ item.name }}</span>

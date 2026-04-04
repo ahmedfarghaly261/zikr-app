@@ -7,6 +7,14 @@ export default {
   ],
   theme: {
     extend: {
+      colors: {
+        background: '#faf9f7',
+        primary: '#2f855a',
+        card: {
+          DEFAULT: '#ffffff',
+          text: '#374151',
+        },
+      },
       fontFamily: {
         sans: ['Cairo', 'sans-serif'],
         cairo: ['Cairo', 'sans-serif'],
