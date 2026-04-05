@@ -1,6 +1,5 @@
 export interface Hadith {
-  id: string
+  hadith_number: number
+  page: number
   text: string
-  source: string
-  category?: string
 }
