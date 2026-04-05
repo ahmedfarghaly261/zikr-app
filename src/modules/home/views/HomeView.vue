@@ -72,8 +72,10 @@ const bottomRow = computed(() => features.slice(3))
         </div>
         <HeroSection />
         <br>
+     <div v-if="loading" class="text-center py-4 text-emerald-600 font-semibold">{{ t('common.loading') }}</div>
+     <div v-else-if="error" class="text-red-500 text-center py-4 font-semibold">{{ error }}</div>
      <PrayersTimesCard
-      v-if="nextPrayer"
+      v-else-if="nextPrayer"
       :next-prayer="nextPrayer.key"
       :prayer-time="nextPrayerTime"
       :hours-left="hoursLeft"

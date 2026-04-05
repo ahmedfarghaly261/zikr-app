@@ -45,7 +45,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { Search, Filter } from 'lucide-vue-next'
+import { Search, } from 'lucide-vue-next'
 import { hadiths } from '@/modules/hadith/data/hadith.data'
 import HadithCard from '../components/HadithCard.vue'
 
