@@ -2,30 +2,35 @@
 import { ref, computed } from 'vue'
 
 import { useI18n } from 'vue-i18n'
-import { morningAzkar, eveningAzkar } from '@/modules/azkar/data/azkar'
+import { allAzkar } from '@/modules/azkar/data/azkar'
 import type { Azkar } from '@/modules/azkar/types/azkar.types'
 import AzkarCard from '../components/AzkarCard.vue'
 
 const { t } = useI18n()
 
-const activeTab = ref<'morning' | 'evening'>('morning')
+// Initialize all azkar state
+const azkarState = ref<Azkar[]>(allAzkar.map(a => ({ ...a })))
 
-const morningState = ref<Azkar[]>(morningAzkar.map(a => ({ ...a })))
-const eveningState = ref<Azkar[]>(eveningAzkar.map(a => ({ ...a })))
+// Extract all unique categories
+const categories = computed(() => {
+  const cats = azkarState.value.map(a => a.category)
+  return [...new Set(cats)]
+})
+
+// Set the active category conditionally, default to 'أذكار الصباح' or the first one
+const activeCategory = ref(categories.value.includes('أذكار الصباح') ? 'أذكار الصباح' : categories.value[0])
 
 const currentList = computed(() =>
-  activeTab.value === 'morning' ? morningState.value : eveningState.value
+  azkarState.value.filter(a => a.category === activeCategory.value)
 )
 
 function handleIncrement(id: number) {
-  const list = activeTab.value === 'morning' ? morningState : eveningState
-  const azkar = list.value.find(a => a.id === id)
+  const azkar = azkarState.value.find(a => a.id === id)
   if (azkar && azkar.current < azkar.count) azkar.current++
 }
 
 function handleReset(id: number) {
-  const list = activeTab.value === 'morning' ? morningState : eveningState
-  const azkar = list.value.find(a => a.id === id)
+  const azkar = azkarState.value.find(a => a.id === id)
   if (azkar) azkar.current = 0
 }
 </script>
@@ -39,25 +44,18 @@ function handleReset(id: number) {
       <p class="text-gray-400 text-sm">{{ t('athkar.subtitle') }}</p>
     </div>
 
-    <!-- tabs -->
-    <div class="bg-gray-100 rounded-xl p-1 flex gap-1">
+    <!-- filter categories -->
+    <div class="flex overflow-x-auto gap-2 pb-2 scrollbar-hide snap-x">
       <button
-        class="flex-1 py-3 rounded-lg text-sm font-semibold transition-all"
-        :class="activeTab === 'morning'
-          ? 'bg-card text-primary shadow-sm'
-          : 'text-gray-500 hover:text-gray-700'"
-        @click="activeTab = 'morning'"
+        v-for="category in categories"
+        :key="category"
+        class="whitespace-nowrap px-4 py-3 rounded-xl text-sm font-semibold transition-all snap-start"
+        :class="activeCategory === category
+          ? 'bg-primary text-white shadow-md shadow-primary/20'
+          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"
+        @click="activeCategory = category"
       >
-        {{ t('athkar.morning') }}
-      </button>
-      <button
-        class="flex-1 py-3 rounded-lg text-sm font-semibold transition-all"
-        :class="activeTab === 'evening'
-          ? 'bg-card text-primary shadow-sm'
-          : 'text-gray-500 hover:text-gray-700'"
-        @click="activeTab = 'evening'"
-      >
-        {{ t('athkar.evening') }}
+        {{ category }}
       </button>
     </div>
 
