@@ -7,10 +7,24 @@ import { Heart, BookOpen, BookMarked, Clock, BookText } from 'lucide-vue-next'
 import ContentSec from '../components/contentSec.vue';
 import TodayHadith from '../components/todayHadith.vue';
 import TodayZiker from '../components/todayZiker.vue';
+import { useNextPrayer } from '@/modules/home/composables/useNextPrayer'
+import { onMounted } from 'vue';
+
 
 const { t } = useI18n()
 
+// ── prayer times ─────────────────────────────────────────────────
+const {
+  loading,
+  error,
+  nextPrayer,
+  nextPrayerTime,
+  hoursLeft,
+  minutesLeft,
+  detectLocation,
+} = useNextPrayer()
 
+onMounted(() => detectLocation())
 const features = [
   {
     id: 'athkar',
@@ -58,7 +72,13 @@ const bottomRow = computed(() => features.slice(3))
         </div>
         <HeroSection />
         <br>
-        <PrayersTimesCard next-prayer="dhuhr" prayer-time="12:30" :hours-left="1" :minutes-left="1" />
+     <PrayersTimesCard
+      v-if="nextPrayer"
+      :next-prayer="nextPrayer.key"
+      :prayer-time="nextPrayerTime"
+      :hours-left="hoursLeft"
+      :minutes-left="minutesLeft"
+    />
 
           <section class="p-6 font-cairo">
     <div class="grid grid-cols-3 gap-4 mb-4">
