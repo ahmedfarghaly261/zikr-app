@@ -26,14 +26,14 @@ const toggleMobileMenu = () => {
 </script>
 
 <template>
-  <nav class="bg-card sticky shadow-lg top-0 z-50 transition-colors bg-white">
+  <nav class="bg-card sticky shadow-lg top-0 z-50 transition-colors bg-white dark:bg-slate-900 dark:border-b dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <!-- Right side - Logo -->
         <div class="flex items-center gap-4">
           <button
             @click="toggleMobileMenu"
-            class="lg:hidden p-2 rounded-lg hover:bg-accent transition-colors"
+            class="lg:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 text-gray-600 dark:text-gray-300 transition-colors"
           >
             <X v-if="isMobileMenuOpen" class="w-5 h-5" />
             <Menu v-else class="w-5 h-5" />
@@ -43,7 +43,7 @@ const toggleMobileMenu = () => {
             <div class="w-12 h-12 bg-linear-to-br from-[#68A282] to-[#E6F0E9] rounded-2xl flex items-center justify-center shadow-sm">
               <span class="text-2xl font-medium text-white pb-1">{{ t('app.logoLetter') }}</span>
             </div>
-            <span class="font-extrabold text-[#2C384A] text-2xl hidden sm:block tracking-wide">{{ t('app.title') }}</span>
+            <span class="font-extrabold text-[#2C384A] dark:text-white text-2xl hidden sm:block tracking-wide">{{ t('app.title') }}</span>
           </router-link>
         </div>
 
@@ -57,7 +57,7 @@ const toggleMobileMenu = () => {
               'px-4 py-2 rounded-lg transition-all flex items-center gap-2 font-medium',
               route.path === item.href
                 ? 'bg-primary text-white shadow-sm'
-                : 'text-gray-700 hover:bg-primary hover:text-white'
+                : 'text-gray-700 dark:text-gray-300 hover:bg-primary dark:hover:bg-emerald-600 hover:text-white'
             ]"
           >
             <component :is="item.icon" class="w-4 h-4" />
@@ -69,7 +69,7 @@ const toggleMobileMenu = () => {
         <div class="flex items-center gap-2">
           <button
             @click="toggleDarkMode"
-            class="p-2 rounded-lg hover:bg-accent transition-colors"
+            class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-slate-800 text-gray-600 dark:text-gray-300 transition-colors"
             :aria-label="t('nav.toggleDarkMode')"
           >
             <Sun v-if="isDark" class="w-5 h-5" />
@@ -80,7 +80,7 @@ const toggleMobileMenu = () => {
     </div>
 
     <!-- Mobile menu -->
-    <div v-if="isMobileMenuOpen" class="lg:hidden border-t border-gray-200 bg-white">
+    <div v-if="isMobileMenuOpen" class="lg:hidden border-t border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-900">
       <div class="px-2 pt-2 pb-3 space-y-1">
         <router-link
           v-for="item in navigation"
@@ -91,7 +91,7 @@ const toggleMobileMenu = () => {
             'flex items-center gap-3 px-3 py-2 rounded-lg transition-colors font-medium',
             route.path === item.href
                 ? 'bg-primary text-white'
-                : 'text-gray-700 hover:bg-primary hover:text-white'
+                : 'text-gray-700 dark:text-gray-300 hover:bg-primary dark:hover:bg-emerald-600 hover:text-white'
             ]"
         >
           <component :is="item.icon" class="w-5 h-5" />

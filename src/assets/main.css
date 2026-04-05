@@ -2,8 +2,11 @@
 @config "../../tailwind.config.ts";
 
 body {
-  background-color: var(--color-background, #faf9f7);
-  color: #374151;
+  @apply bg-background text-gray-800 transition-colors duration-300;
   font-family: "Cairo", sans-serif;
   direction: rtl;
+}
+
+.dark body {
+  @apply bg-slate-900 text-gray-100;
 }

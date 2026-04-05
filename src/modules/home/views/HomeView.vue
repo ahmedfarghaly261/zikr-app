@@ -66,8 +66,8 @@ const bottomRow = computed(() => features.slice(3))
 <template class="px-4">
     <section class="lg:px-20">
         <div class="home-view">
-            <h1 class="text-3xl font-bold mb-4">{{ t('nav.home') }}</h1>
-            <p class="text-gray-600">{{ t('common.loading') }}</p>
+            <h1 class="text-3xl font-bold mb-4 text-gray-900 dark:text-gray-100">{{ t('nav.home') }}</h1>
+            <p class="text-gray-600 dark:text-gray-400">{{ t('common.loading') }}</p>
 
         </div>
         <HeroSection />

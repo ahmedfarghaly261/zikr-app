@@ -1,11 +1,11 @@
 <template>
   <div v-if="isOpen" class="modal-overlay" @click="close">
-    <div class="modal-content" @click.stop>
-      <h2>{{ title }}</h2>
-      <p>{{ message }}</p>
+    <div class="modal-content dark:bg-slate-800 dark:text-gray-100" @click.stop>
+      <h2 class="dark:text-gray-100">{{ title }}</h2>
+      <p class="dark:text-gray-300">{{ message }}</p>
       <div class="modal-actions">
-        <button class="btn-cancel" @click="close">{{ t('common.cancel') }}</button>
-        <button class="btn-confirm" @click="confirm">{{ t('common.confirm') }}</button>
+        <button class="btn-cancel dark:bg-slate-600 dark:hover:bg-slate-500" @click="close">{{ t('common.cancel') }}</button>
+        <button class="btn-confirm dark:bg-primary dark:hover:bg-emerald-600" @click="confirm">{{ t('common.confirm') }}</button>
       </div>
     </div>
   </div>

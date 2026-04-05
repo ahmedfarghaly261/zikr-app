@@ -3,20 +3,20 @@
 
     <!-- header -->
     <div class="text-center space-y-1">
-      <h1 class="text-3xl font-bold text-gray-900">{{ t('duas.title') }}</h1>
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100">{{ t('duas.title') }}</h1>
       <p class="text-gray-400 text-sm">{{ t('duas.subtitle') }}</p>
     </div>
 
     <!-- search -->
     <div class="relative">
-      <Search class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+      <Search class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500" />
       <input
         v-model="searchQuery"
         type="text"
         :placeholder="t('duas.searchPlaceholder')"
-        class="w-full pr-10 pl-4 py-3 bg-white border border-gray-100
-               rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-300
-               transition-all font-cairo text-right"
+        class="w-full pr-10 pl-4 py-3 bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700
+               rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-300 dark:focus:ring-purple-500
+               transition-all font-cairo text-right text-gray-800 dark:text-gray-100"
       />
     </div>
 
@@ -28,7 +28,7 @@
         class="px-4 py-2 rounded-lg transition-all text-sm font-semibold"
         :class="selectedCategory === cat.key
           ? 'bg-purple-500 text-white shadow-sm'
-          : 'bg-white border border-gray-100 text-gray-600 hover:border-purple-300'"
+          : 'bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 text-gray-600 dark:text-gray-300 hover:border-purple-300 dark:hover:border-purple-500'"
         @click="selectedCategory = cat.key"
       >
         {{ t(cat.labelKey) }}

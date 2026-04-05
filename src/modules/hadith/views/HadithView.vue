@@ -3,7 +3,7 @@
 
     <!-- header -->
     <div class="text-center space-y-1">
-      <h1 class="text-3xl font-bold text-gray-900">{{ t('hadith.title') }}</h1>
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100">{{ t('hadith.title') }}</h1>
       <p class="text-gray-400 text-sm">{{ t('hadith.subtitle') }}</p>
     </div>
 
@@ -17,9 +17,9 @@
           v-model="searchQuery"
           type="text"
           :placeholder="t('hadith.searchPlaceholder')"
-          class="w-full pr-10 pl-4 py-3 bg-gray-50 border border-gray-100
+          class="w-full pr-10 pl-4 py-3 bg-gray-50 border border-gray-100 dark:border-slate-800
                  rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-300
-                 transition-all font-cairo text-right text-gray-800"
+                 transition-all font-cairo text-right text-gray-800 dark:text-gray-200"
         />
       </div>
 

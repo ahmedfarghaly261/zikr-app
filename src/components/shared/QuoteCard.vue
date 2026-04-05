@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-card text-card-text border border-gray-100 rounded-2xl p-5 font-cairo"
+    class="bg-white dark:bg-slate-800 text-gray-800 dark:text-gray-100 border border-gray-100 dark:border-slate-700 rounded-2xl p-5 font-cairo"
   >
     <!-- header -->
     <div class="flex items-center  gap-2 mb-4 ">
@@ -14,11 +14,11 @@
     </div>
 
     <!-- quote block -->
-    <div class="bg-gray-50 rounded-xl p-4 border-s-4" :style="{ borderColor: accentColor }">
-      <p class="text-[14px] text-gray-800 text-start leading-loose font-semibold">
+    <div class="bg-gray-50 dark:bg-slate-900/50 rounded-xl p-4 border-s-4" :style="{ borderColor: accentColor }">
+      <p class="text-[14px] text-gray-800 dark:text-gray-200 text-start leading-loose font-semibold">
         "{{ text }}"
       </p>
-      <p v-if="source" class="text-[12px] text-gray-400 text-start mt-2 font-normal">
+      <p v-if="source" class="text-[12px] text-gray-400 dark:text-gray-500 text-start mt-2 font-normal">
         {{ source }}
       </p>
     </div>

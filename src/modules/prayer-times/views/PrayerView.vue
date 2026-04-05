@@ -3,29 +3,29 @@
 
     <!-- header -->
     <div class="text-center space-y-1">
-      <h1 class="text-3xl font-bold text-gray-900">{{ t('prayer.title') }}</h1>
-      <p class="text-gray-400 text-sm">{{ t('prayer.subtitle') }}</p>
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100">{{ t('prayer.title') }}</h1>
+      <p class="text-gray-400 dark:text-gray-500 text-sm">{{ t('prayer.subtitle') }}</p>
     </div>
 
     <!-- location + time card -->
-    <div class="bg-white border border-gray-100 rounded-2xl p-5 space-y-3">
+    <div class="bg-white dark:bg-slate-800 border border-gray-100 dark:border-slate-700 rounded-2xl p-5 space-y-3">
       <div class="flex items-center justify-between flex-wrap gap-3">
 
         <!-- location -->
         <button
-          class="flex items-center gap-2 text-gray-700 hover:text-emerald-600
+          class="flex items-center gap-2 text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400
                  transition-colors group"
           @click="showLocationInput = !showLocationInput"
         >
-          <MapPin class="w-4 h-4 text-emerald-500" />
+          <MapPin class="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
           <span class="font-semibold text-sm">
             {{ locationLabel || t('prayer.noLocation') }}
           </span>
         </button>
 
         <!-- current time -->
-        <div class="flex items-center gap-2 text-gray-600">
-          <Clock class="w-4 h-4 text-emerald-500" />
+        <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+          <Clock class="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
           <span class="font-semibold text-sm">{{ formattedTime }}</span>
         </div>
 
@@ -33,31 +33,27 @@
 
       <!-- date -->
       <div class="text-center">
-        <p class="text-xs text-gray-400">{{ formattedDate }}</p>
+        <p class="text-xs text-gray-400 dark:text-gray-500">{{ formattedDate }}</p>
       </div>
 
       <!-- location input panel -->
-      <div v-if="showLocationInput" class="pt-2 space-y-3 border-t border-gray-50">
+      <div v-if="showLocationInput" class="pt-2 space-y-3 border-t border-gray-50 dark:border-slate-700">
         <div class="flex gap-2">
           <input
             v-model="cityInput"
             type="text"
             :placeholder="t('prayer.cityPlaceholder')"
-            class="flex-1 px-3 py-2.5 border border-gray-100 rounded-xl
-                   bg-gray-50 text-right font-cairo text-sm
-                   focus:outline-none focus:ring-2 focus:ring-emerald-300"
+            class="flex-1 px-3 py-2.5 border border-gray-100 dark:border-slate-700 bg-gray-50 dark:bg-slate-900/50 rounded-xl text-right font-cairo text-sm text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-300 dark:focus:ring-emerald-500"
           />
           <input
             v-model="countryInput"
             type="text"
             :placeholder="t('prayer.countryPlaceholder')"
-            class="flex-1 px-3 py-2.5 border border-gray-100 rounded-xl
-                   bg-gray-50 text-right font-cairo text-sm
-                   focus:outline-none focus:ring-2 focus:ring-emerald-300"
+            class="flex-1 px-3 py-2.5 border border-gray-100 dark:border-slate-700 bg-gray-50 dark:bg-slate-900/50 rounded-xl text-right font-cairo text-sm text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-300 dark:focus:ring-emerald-500"
           />
           <button
-            class="px-4 py-2.5 bg-emerald-500 text-white rounded-xl text-sm
-                   font-semibold hover:bg-emerald-600 transition-colors
+            class="px-4 py-2.5 bg-emerald-500 dark:bg-emerald-600 text-white rounded-xl text-sm
+                   font-semibold hover:bg-emerald-600 dark:hover:bg-emerald-500 transition-colors
                    active:scale-95"
             @click="handleManualSearch"
           >
@@ -66,8 +62,8 @@
         </div>
 
         <button
-          class="w-full py-2.5 border border-emerald-200 text-emerald-700
-                 rounded-xl text-sm font-semibold hover:bg-emerald-50
+          class="w-full py-2.5 border border-emerald-200 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-400
+                 rounded-xl text-sm font-semibold hover:bg-emerald-50 dark:hover:bg-emerald-500/10
                  transition-colors flex items-center justify-center gap-2"
           @click="detectLocation"
         >
@@ -79,15 +75,15 @@
 
     <!-- error -->
     <div v-if="error"
-      class="bg-red-50 border border-red-100 rounded-xl p-4 text-center">
-      <p class="text-red-500 text-sm">{{ error }}</p>
+      class="bg-red-50 dark:bg-red-900/20 border border-red-100 dark:border-red-900/50 rounded-xl p-4 text-center">
+      <p class="text-red-500 dark:text-red-400 text-sm">{{ error }}</p>
     </div>
 
     <!-- loading -->
     <div v-if="loading" class="text-center py-12">
-      <div class="inline-block w-8 h-8 border-2 border-emerald-500
+      <div class="inline-block w-8 h-8 border-2 border-emerald-500 dark:border-emerald-400
                   border-t-transparent rounded-full animate-spin mb-3" />
-      <p class="text-gray-400 text-sm">{{ t('prayer.loading') }}</p>
+      <p class="text-gray-400 dark:text-gray-500 text-sm">{{ t('prayer.loading') }}</p>
     </div>
 
     <template v-if="!loading && prayerDay">
@@ -113,10 +109,10 @@
           class="rounded-xl p-5 border transition-all"
           :class="[
             prayer.isNext
-              ? 'bg-emerald-50 border-emerald-400 border-2'
+              ? 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-400 border-2'
               : prayer.isPassed
-                ? 'bg-gray-50 border-gray-100 opacity-60'
-                : 'bg-white border-gray-100 hover:border-emerald-200'
+                ? 'bg-gray-50 dark:bg-slate-800/50 border-gray-100 dark:border-slate-700 opacity-60'
+                : 'bg-white dark:bg-slate-800 border-gray-100 dark:border-slate-700 hover:border-emerald-200 dark:hover:border-emerald-500/50'
           ]"
         >
           <div class="flex items-center justify-between">
@@ -132,8 +128,8 @@
                   prayer.isNext
                     ? 'bg-emerald-500 text-white'
                     : prayer.isPassed
-                      ? 'bg-gray-200 text-gray-400'
-                      : 'bg-gray-100 text-gray-600'
+                      ? 'bg-gray-200 dark:bg-slate-800 text-gray-400 dark:text-gray-500'
+                      : 'bg-gray-100 dark:bg-slate-700 text-gray-600 dark:text-gray-400'
                 ]"
               >
                 {{ index + 1 }}
@@ -144,14 +140,14 @@
                 <p
                   class="text-xl font-bold"
                   :class="prayer.isNext
-                    ? 'text-emerald-700'
-                    : prayer.isPassed ? 'text-gray-400' : 'text-gray-800'"
+                    ? 'text-emerald-700 dark:text-emerald-400'
+                    : prayer.isPassed ? 'text-gray-400 dark:text-gray-500' : 'text-gray-800 dark:text-gray-200'"
                 >
                   {{ prayer.time }}
                 </p>
                 <p
                   v-if="prayer.name !== 'Sunrise'"
-                  class="text-xs text-gray-400"
+                  class="text-xs text-gray-400 dark:text-gray-500"
                 >
                   {{ prayer.isPassed ? t('prayer.passed') : t('prayer.notYet') }}
                 </p>
@@ -163,12 +159,12 @@
               <p
                 class="text-xl font-bold"
                 :class="prayer.isNext
-                  ? 'text-emerald-700'
-                  : prayer.isPassed ? 'text-gray-400' : 'text-gray-800'"
+                  ? 'text-emerald-700 dark:text-emerald-400'
+                  : prayer.isPassed ? 'text-gray-400 dark:text-gray-500' : 'text-gray-800 dark:text-gray-200'"
               >
                 {{ prayer.arabicName }}
               </p>
-              <p class="text-xs text-gray-400">{{ prayer.name }}</p>
+              <p class="text-xs text-gray-400 dark:text-gray-500">{{ prayer.name }}</p>
             </div>
 
           </div>
@@ -176,8 +172,8 @@
       </div>
 
       <!-- note -->
-      <div class="bg-gray-50 border border-gray-100 rounded-xl p-4">
-        <p class="text-xs text-gray-400 text-center">
+      <div class="bg-gray-50 dark:bg-slate-900/50 border border-gray-100 dark:border-slate-700 rounded-xl p-4">
+        <p class="text-xs text-gray-400 dark:text-gray-500 text-center">
           {{ t('prayer.note') }}
         </p>
       </div>
@@ -187,11 +183,11 @@
     <!-- empty state -->
     <div v-if="!loading && !prayerDay && !error"
       class="text-center py-16 space-y-3">
-      <MapPin class="w-12 h-12 text-gray-200 mx-auto" />
-      <p class="text-gray-400 text-sm">{{ t('prayer.noLocation') }}</p>
+      <MapPin class="w-12 h-12 text-gray-200 dark:text-slate-700 mx-auto" />
+      <p class="text-gray-400 dark:text-gray-500 text-sm">{{ t('prayer.noLocation') }}</p>
       <button
-        class="px-6 py-2.5 bg-emerald-500 text-white rounded-xl text-sm
-               font-semibold hover:bg-emerald-600 transition-colors mx-auto block"
+        class="px-6 py-2.5 bg-emerald-500 dark:bg-emerald-600 text-white rounded-xl text-sm
+               font-semibold hover:bg-emerald-600 dark:hover:bg-emerald-500 transition-colors mx-auto block"
         @click="detectLocation"
       >
         {{ t('prayer.detect') }}

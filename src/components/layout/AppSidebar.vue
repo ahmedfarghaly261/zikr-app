@@ -1,5 +1,5 @@
 <template>
-  <aside class="app-sidebar">
+  <aside class="app-sidebar dark:bg-slate-800 dark:border-slate-700">
     <nav class="sidebar-nav">
       <!-- Navigation items -->
     </nav>

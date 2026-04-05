@@ -40,7 +40,7 @@ function handleReset(id: number) {
 
     <!-- header -->
     <div class="text-center space-y-1">
-      <h1 class="text-3xl font-bold text-gray-900">{{ t('athkar.title') }}</h1>
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100">{{ t('athkar.title') }}</h1>
       <p class="text-gray-400 text-sm">{{ t('athkar.subtitle') }}</p>
     </div>
 
@@ -52,7 +52,7 @@ function handleReset(id: number) {
         class="whitespace-nowrap px-4 py-3 rounded-xl text-sm font-semibold transition-all snap-start"
         :class="activeCategory === category
           ? 'bg-primary text-white shadow-md shadow-primary/20'
-          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'"
+          : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-slate-700'"
         @click="activeCategory = category"
       >
         {{ category }}

@@ -1,7 +1,7 @@
 <template>
-  <footer class="app-footer">
+  <footer class="app-footerbg-card text-center h-5  shadow-lg bg-white  dark:bg-slate-900 dark:border-b dark:border-slate-800">
     <div class="footer-content">
-      <p>{{ t('footer.copyright', { year: currentYear }) }}</p>
+      <p class="dark:text-gray-400">{{ t('footer.copyright', { year: currentYear }) }}</p>
     </div>
   </footer>
 </template>

@@ -1,20 +1,20 @@
 <template>
   <div
-    class="bg-card text-card-text rounded-xl p-6 border transition-all font-cairo"
+    class="bg-white dark:bg-slate-800 text-gray-800 dark:text-gray-100 rounded-xl p-6 border transition-all font-cairo"
     :class="isComplete
-      ? 'border-primary bg-primary/10'
-      : 'border-gray-100 hover:border-primary/50'"
+      ? 'border-primary bg-primary/10 dark:bg-primary/20'
+      : 'border-gray-100 dark:border-slate-700 hover:border-primary/50'"
   >
     <!-- text from json -->
     <p class="text-xl leading-loose text-center mb-2 whitespace-pre-wrap">
       {{ azkar.text }}
     </p>
 
-    <div v-if="azkar.description" class="text-sm text-gray-500 text-center mb-5">
+    <div v-if="azkar.description" class="text-sm text-gray-500 dark:text-gray-400 text-center mb-5">
       {{ azkar.description }}
     </div>
 
-    <div v-if="azkar.reference" class="text-xs text-primary/70 text-start mb-5">
+    <div v-if="azkar.reference" class="text-xs text-primary/70 dark:text-primary text-start mb-5">
       {{ azkar.reference }}
     </div>
 
