@@ -19,6 +19,16 @@ const routes: RouteRecordRaw[] = [
         path: 'dua',
         name: 'Duas',
         component: () => import('@/modules/duas/views/AdeiaView.vue')
+      },
+      {
+        path: 'hadith',
+        name: 'Hadith',
+        component: () => import('@/modules/hadith/views/HadithView.vue')
+      },
+      {
+        path: 'prayer-times',
+        name: 'PrayerTimes',
+        component: () => import('@/modules/prayer-times/views/PrayerView.vue')
       }
     ],
   },
