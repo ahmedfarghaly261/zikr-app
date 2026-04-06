@@ -30,7 +30,7 @@ const features = [
     id: 'athkar',
     icon: BookMarked,
     gradient: 'linear-gradient(135deg,#34d399,#10b981)',
-    route: '/athkar',
+    route: '/azkar',
   },
   {
     id: 'hadith',
@@ -42,13 +42,13 @@ const features = [
     id: 'adeia',
     icon: Heart,
     gradient: 'linear-gradient(135deg,#c084fc,#818cf8)',
-    route: '/adeia',
+    route: '/dua',
   },
   {
     id: 'prayer',
     icon: Clock,
     gradient: 'linear-gradient(135deg,#f97316,#fb923c)',
-    route: '/prayer',
+    route: '/prayer-times',
   },
   {
     id: 'quran',
@@ -61,15 +61,10 @@ const features = [
 const topRow = computed(() => features.slice(0, 3))
 const bottomRow = computed(() => features.slice(3))
 
-// fetchHomeData()
 </script>
 <template class="px-4">
     <section class="lg:px-20">
-        <div class="home-view">
-            <h1 class="text-3xl font-bold mb-4 text-gray-900 dark:text-gray-100">{{ t('nav.home') }}</h1>
-            <p class="text-gray-600 dark:text-gray-400">{{ t('common.loading') }}</p>
 
-        </div>
         <HeroSection />
         <br>
      <div v-if="loading" class="text-center py-4 text-emerald-600 font-semibold">{{ t('common.loading') }}</div>

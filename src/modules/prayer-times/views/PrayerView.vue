@@ -1,5 +1,5 @@
 <template>
-  <main dir="rtl" class="max-w-2xl mx-auto px-4 py-8 font-cairo space-y-5">
+  <main dir="rtl" class="max-w-4xl mx-auto px-4 py-8 font-cairo space-y-5">
 
     <!-- header -->
     <div class="text-center space-y-1">

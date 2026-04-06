@@ -26,7 +26,7 @@ const toggleMobileMenu = () => {
 </script>
 
 <template>
-  <nav class="bg-card sticky shadow-lg top-0 z-50 transition-colors bg-white dark:bg-slate-900 dark:border-b dark:border-slate-800">
+  <nav class="bg-card sticky shadow-lg top-0 z-50 transition-colors dark:bg-slate-900 dark:border-b dark:border-slate-800 DARK:shadow-lg-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center h-16">
         <!-- Right side - Logo -->

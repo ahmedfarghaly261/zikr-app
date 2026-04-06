@@ -8,18 +8,18 @@
     </div>
 
     <!-- search + filter box -->
-    <div class="bg-white rounded-xl border border-gray-100 p-4 space-y-4">
+    <div class="bg-white rounded-xl border border-gray-100 p-4 space-y-4 dark:bg-[#1d293d] dark:border-slate-700">
 
       <!-- search -->
-      <div class="relative">
-        <Search class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+      <div class="relative dark:bg-[#1d293d]">
+        <Search class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:bg-[#1d293d]" />
         <input
           v-model="searchQuery"
           type="text"
           :placeholder="t('hadith.searchPlaceholder')"
           class="w-full pr-10 pl-4 py-3 bg-gray-50 border border-gray-100 dark:border-slate-800
                  rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-300
-                 transition-all font-cairo text-right text-gray-800 dark:text-gray-200"
+                 transition-all font-cairo text-right text-gray-800 dark:text-gray-200 dark:bg-[#1d293d] "
         />
       </div>
 
