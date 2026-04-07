@@ -70,6 +70,7 @@ const duas = ref<Dua[]>(initialDuas.map(d => ({ ...d })))
 
 const categories = [
   { key: 'all',      labelKey: 'duas.categories.all'      },
+  { key: 'favorite', labelKey: 'duas.categories.favorite' },
   { key: 'daily',    labelKey: 'duas.categories.daily'    },
   { key: 'prophets', labelKey: 'duas.categories.prophets' },
   { key: 'quran',    labelKey: 'duas.categories.quran'    },
@@ -84,7 +85,7 @@ const filteredDuas = computed(() =>
 
     const matchesSearch   = !query || title.includes(query) || text.includes(query)
     const matchesCategory = selectedCategory.value === 'all'
-      || dua.categoryKey === `duas.categories.${selectedCategory.value}`
+      || (selectedCategory.value === 'favorite' ? dua.isFavorite : dua.categoryKey === `duas.categories.${selectedCategory.value}`)
 
     return matchesSearch && matchesCategory
   })

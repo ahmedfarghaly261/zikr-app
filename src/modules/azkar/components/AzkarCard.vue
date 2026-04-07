@@ -19,7 +19,7 @@
     </div>
 
     <!-- progress bar -->
-    <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-5">
+    <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-5 dark:bg-slate-700">
       <div
         class="h-full rounded-full transition-all duration-300 bg-primary"
         :style="{ width: `${progress}%` }"
@@ -31,7 +31,7 @@
       <div class="flex items-center gap-2">
         <button
           :disabled="isComplete"
-          class="px-5 py-2.5 rounded-lg font-semibold text-sm transition-all active:scale-95 bg-primary text-white"
+          class="px-5 py-2.5 rounded-lg font-semibold text-sm transition-all active:scale-95 bg-primary text-white d"
           :class="isComplete ? 'cursor-not-allowed opacity-80' : 'opacity-90 hover:opacity-100'"
           @click="$emit('increment', azkar.id)"
         >

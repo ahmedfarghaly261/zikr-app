@@ -52,7 +52,7 @@ function handleReset(id: number) {
         class="whitespace-nowrap px-4 py-3 rounded-xl text-sm font-semibold transition-all snap-start"
         :class="activeCategory === category
           ? 'bg-primary text-white shadow-md shadow-primary/20'
-          : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-slate-700'"
+          : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-slate-700 dark:text-gray-300'"
         @click="activeCategory = category"
       >
         {{ category }}

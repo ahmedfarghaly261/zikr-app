@@ -66,5 +66,20 @@
       "text": "Subhanallah wa bihamdihi, Subhanallah al-Adheem",
       "source": "Narrated by Bukhari"
     }
+  },
+  "duas": {
+    "title": "Supplications",
+    "subtitle": "Call upon Me, I will respond to you",
+    "searchPlaceholder": "Search supplications...",
+    "source": "Source",
+    "noResults": "No results found",
+    "categories": {
+      "all": "All",
+      "favorite": "Favorites",
+      "daily": "Daily Duas",
+      "prophets": "Prophets Duas",
+      "quran": "Quranic Duas",
+      "prophet": "Prophet's Duas"
+    }
   }
 }
