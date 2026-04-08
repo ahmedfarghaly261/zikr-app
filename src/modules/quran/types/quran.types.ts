@@ -1,12 +1,25 @@
 export interface Surah {
   number: number
   name: string
-  ayahCount: number
+  englishName: string
+  englishNameTranslation: string
+  numberOfAyahs: number
+  revelationType: 'Meccan' | 'Medinan'
 }
 
 export interface Ayah {
-  surah: number
   number: number
+  numberInSurah: number
   text: string
-  translation?: string
+  audio: string
+}
+
+export interface SurahDetail {
+  number: number
+  name: string
+  englishName: string
+  englishNameTranslation: string
+  numberOfAyahs: number
+  revelationType: string
+  ayahs: Ayah[]
 }
