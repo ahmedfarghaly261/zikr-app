@@ -29,7 +29,17 @@ const routes: RouteRecordRaw[] = [
         path: 'prayer-times',
         name: 'PrayerTimes',
         component: () => import('@/modules/prayer-times/views/PrayerView.vue')
-      }
+      },
+      {
+        path: 'quran',
+        name: 'Quran',
+        component: () => import('@/modules/quran/views/quranView.vue')
+      },
+      {
+        path: 'quran/:number',
+        name: 'Surah',
+        component: () => import('@/modules/quran/views/SurahView.vue'),
+      },
     ],
   },
 ]
