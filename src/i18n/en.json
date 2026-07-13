@@ -23,7 +23,8 @@
     "cancel": "Cancel",
     "confirm": "Confirm",
     "noData": "No data available",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "back": "Back"
   },
   "prayer": {
     "nextPrayer": "Next Prayer",
@@ -81,5 +82,22 @@
       "quran": "Quranic Duas",
       "prophet": "Prophet's Duas"
     }
+  },
+  "quran": {
+    "title": "Quran",
+    "subtitle": "Read and listen to the Quran",
+    "surahList": "Surah List",
+    "surahListDesc": "Choose a surah to read or listen",
+    "ayah": "Ayah",
+    "meccan": "Meccan",
+    "medinan": "Medinan",
+    "loading": "Loading surahs...",
+    "error": "Failed to load surahs",
+    "retry": "Retry",
+    "blockView": "Blocks",
+    "wholeSurahView": "Whole Surah",
+    "switchToBlockView": "Show each ayah in a separate block",
+    "switchToWholeSurahView": "Show the whole surah in one view",
+    "playAyah": "Play ayah"
   }
 }
