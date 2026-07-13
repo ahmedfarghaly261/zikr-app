@@ -23,7 +23,13 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'hadith',
         name: 'Hadith',
-        component: () => import('@/modules/hadith/views/HadithView.vue')
+        component: () => import('@/modules/hadith/views/HadithView.vue'),
+      },
+      {
+        path: 'hadith/:book/:hadithNumber',
+        name: 'HadithDetails',
+        component: () => import('@/modules/hadith/views/HadithDetailsView.vue'),
+        props: true,
       },
       {
         path: 'prayer-times',
