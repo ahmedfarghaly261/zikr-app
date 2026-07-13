@@ -1,8 +1,3 @@
-/**
- * Typed application error hierarchy.
- * Never expose raw Axios or CDN error details in the UI — use these classes instead.
- */
-
 export type ApiErrorKind =
   | 'network'
   | 'timeout'
