@@ -1,5 +1,10 @@
+export { HADITH_BOOKS, findHadithBook, VALID_HADITH_BOOKS } from './hadith-books'
+
+/**
+ * @deprecated Use HADITH_BOOKS from hadith-books.ts instead.
+ */
 export const HADITH_SOURCES = {
-  SAHIH_BUKHARI: 'sahih_bukhari',
-  SAHIH_MUSLIM: 'sahih_muslim',
-  TIRMIDHI: 'tirmidhi',
-}
+  SAHIH_BUKHARI: 'ara-bukhari',
+  SAHIH_MUSLIM: 'ara-muslim',
+  TIRMIDHI: 'ara-tirmidhi',
+} as const
