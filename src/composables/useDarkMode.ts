@@ -1,23 +1,39 @@
-import { useLocalStorage } from './useLocalStorage'
-import { computed, watchEffect } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
+import { useSettingsStore } from '@/stores/settings.store'
+
+const systemPrefersDark = ref(false)
+let isSystemPreferenceInitialized = false
+
+function initializeSystemPreference() {
+  if (isSystemPreferenceInitialized || typeof window === 'undefined') return
+
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+  systemPrefersDark.value = mediaQuery.matches
+  mediaQuery.addEventListener('change', (event) => {
+    systemPrefersDark.value = event.matches
+  })
+  isSystemPreferenceInitialized = true
+}
 
 export function useDarkMode() {
-  const isDark = useLocalStorage('darkMode', false)
+  const settingsStore = useSettingsStore()
+  initializeSystemPreference()
+
+  const isDark = computed(() => (
+    settingsStore.theme === 'dark'
+    || (settingsStore.theme === 'system' && systemPrefersDark.value)
+  ))
 
   watchEffect(() => {
-    if (isDark.value) {
-      document.documentElement.classList.add('dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-    }
+    document.documentElement.classList.toggle('dark', isDark.value)
   })
 
   const toggle = () => {
-    isDark.value = !isDark.value
+    settingsStore.setTheme(isDark.value ? 'light' : 'dark')
   }
 
   return {
-    isDark: computed(() => isDark.value),
+    isDark,
     toggle,
   }
 }
