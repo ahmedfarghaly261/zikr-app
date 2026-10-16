@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
-import { House, BookOpen, BookMarked, Heart, Clock, Scroll, Menu, X, Sun, Moon } from 'lucide-vue-next'
+import { House, BookOpen, BookMarked, Heart, Clock, Scroll, Menu, X, Sun, Moon, Settings } from 'lucide-vue-next'
 import { useDarkMode } from '@/composables/useDarkMode'
 
 const route = useRoute()
@@ -18,6 +18,7 @@ const navigation = computed(() => [
   { name: t('nav.duas'), href: '/dua', icon: Heart },
   { name: t('nav.prayerTimes'), href: '/prayer-times', icon: Clock },
   { name: t('nav.quran'), href: '/quran', icon: BookMarked },
+  { name: t('nav.preferences'), href: '/preferences', icon: Settings },
 ])
 
 const toggleMobileMenu = () => {
