@@ -19,7 +19,14 @@
     </div>
 
     <!-- progress bar -->
-    <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-5 dark:bg-slate-700">
+    <div
+      class="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-5 dark:bg-slate-700"
+      role="progressbar"
+      :aria-label="t('athkar.progress')"
+      aria-valuemin="0"
+      :aria-valuemax="azkar.count"
+      :aria-valuenow="azkar.current"
+    >
       <div
         class="h-full rounded-full transition-all duration-300 bg-primary"
         :style="{ width: `${progress}%` }"
@@ -30,7 +37,9 @@
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-2">
         <button
+          type="button"
           :disabled="isComplete"
+          :aria-label="isComplete ? t('athkar.complete') : t('athkar.increment')"
           class="px-5 py-2.5 rounded-lg font-semibold text-sm transition-all active:scale-95 bg-primary text-white d"
           :class="isComplete ? 'cursor-not-allowed opacity-80' : 'opacity-90 hover:opacity-100'"
           @click="$emit('increment', azkar.id)"
@@ -39,15 +48,15 @@
         </button>
 
         <button
+          type="button"
+          :aria-label="t('athkar.reset')"
+          :title="t('athkar.reset')"
           class="p-2.5 rounded-lg hover:bg-gray-100 transition-colors"
           @click="$emit('reset', azkar.id)"
         >
           <RotateCw class="w-4 h-4 text-gray-400" />
         </button>
 
-        <button class="p-2.5 rounded-lg hover:bg-gray-100 transition-colors">
-          <Play class="w-4 h-4 text-gray-400" />
-        </button>
       </div>
 
       <div class="text-center">
@@ -63,7 +72,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { RotateCw, Play } from 'lucide-vue-next'
+import { RotateCw } from 'lucide-vue-next'
 import type { Azkar } from '@/modules/azkar/types/azkar.types'
 
 const props = defineProps<{ azkar: Azkar }>()

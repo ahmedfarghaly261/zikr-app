@@ -17,8 +17,12 @@ const categories = computed(() => {
   return [...new Set(cats)]
 })
 
-// Set the active category conditionally, default to 'أذكار الصباح' or the first one
-const activeCategory = ref(categories.value.includes('أذكار الصباح') ? 'أذكار الصباح' : categories.value[0])
+const activeCategory = ref(categories.value[0])
+
+function categoryLabel(category: string): string {
+  const index = categories.value.indexOf(category)
+  return t(`athkar.categories.${index}`)
+}
 
 const currentList = computed(() =>
   azkarState.value.filter(a => a.category === activeCategory.value)
@@ -45,17 +49,24 @@ function handleReset(id: number) {
     </div>
 
     <!-- filter categories -->
-    <div class="flex overflow-x-auto gap-2 pb-2 scrollbar-hide snap-x">
+    <div
+      class="flex overflow-x-auto gap-2 pb-2 scrollbar-hide snap-x"
+      role="tablist"
+      :aria-label="t('athkar.categoryFilters')"
+    >
       <button
         v-for="category in categories"
         :key="category"
+        type="button"
+        role="tab"
+        :aria-selected="activeCategory === category"
         class="whitespace-nowrap px-4 py-3 rounded-xl text-sm font-semibold transition-all snap-start"
         :class="activeCategory === category
           ? 'bg-primary text-white shadow-md shadow-primary/20'
           : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-slate-700 dark:text-gray-300'"
         @click="activeCategory = category"
       >
-        {{ category }}
+        {{ categoryLabel(category) }}
       </button>
     </div>
 
