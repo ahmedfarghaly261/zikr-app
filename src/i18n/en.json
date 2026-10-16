@@ -10,6 +10,7 @@
     "duas": "Duas",
     "prayerTimes": "Prayer Times",
     "quran": "Quran",
+    "preferences": "Preferences",
     "toggleDarkMode": "Toggle Dark Mode"
   },
   "hero": {
@@ -99,5 +100,24 @@
     "switchToBlockView": "Show each ayah in a separate block",
     "switchToWholeSurahView": "Show the whole surah in one view",
     "playAyah": "Play ayah"
+  },
+  "preferences": {
+    "title": "Preferences",
+    "subtitle": "Personalize the app to make reading more comfortable.",
+    "language": "Language",
+    "languageDescription": "Choose the language used for navigation and labels.",
+    "arabic": "Arabic",
+    "english": "English",
+    "appearance": "Appearance",
+    "appearanceDescription": "Choose a light or dark theme, or follow your device.",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "textSize": "Text size",
+    "textSizeDescription": "Adjust the size of text throughout the app.",
+    "small": "Small",
+    "medium": "Medium",
+    "large": "Large",
+    "reset": "Reset preferences"
   }
 }
