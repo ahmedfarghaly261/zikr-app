@@ -1,6 +1,5 @@
 <template>
   <div
-    dir="rtl"
     class="flex flex-col items-center justify-center gap-4 py-12 px-6 text-center"
     role="alert"
     aria-live="polite"
@@ -30,13 +29,14 @@
       @click="onRetry"
     >
       <RotateCcw :size="16" />
-      <span>إعادة المحاولة</span>
+      <span>{{ t('hadith.retry') }}</span>
     </button>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { AlertCircle, RotateCcw } from 'lucide-vue-next'
 import { type ApiErrorKind } from '@/services/api-error'
 
@@ -44,41 +44,18 @@ import { type ApiErrorKind } from '@/services/api-error'
 
 interface Props {
   errorKind?: ApiErrorKind
-  customMessage?: string
   onRetry?: (() => void) | null
 }
 
 const props = withDefaults(defineProps<Props>(), {
   errorKind: 'unknown',
-  customMessage: undefined,
   onRetry: null,
 })
 
+const { t } = useI18n()
+
 // ─── Friendly messages per error kind ────────────────────────────────────────
 
-const MESSAGE_MAP: Record<ApiErrorKind, string> = {
-  network: 'تعذر الاتصال بالإنترنت',
-  timeout: 'انتهت مهلة الاتصال',
-  cancelled: 'تم إلغاء الطلب',
-  invalid_response: 'استجابة غير صالحة من المصدر',
-  not_found: 'لم يتم العثور على الحديث المطلوب',
-  server: 'تعذر الاتصال بمصدر الأحاديث',
-  unknown: 'تعذر تحميل الحديث',
-}
-
-const HINT_MAP: Record<ApiErrorKind, string> = {
-  network: 'تحقق من اتصالك بالإنترنت ثم حاول مرة أخرى.',
-  timeout: 'الخادم يستغرق وقتاً طويلاً. يرجى المحاولة لاحقاً.',
-  cancelled: 'يمكنك إعادة البحث عند الاستعداد.',
-  invalid_response: 'قد يكون رقم الحديث خارج النطاق المتاح.',
-  not_found: 'تأكد من صحة رقم الحديث والمجموعة المختارة.',
-  server: 'قد تكون هناك مشكلة مؤقتة في الخادم.',
-  unknown: 'يرجى المحاولة مرة أخرى.',
-}
-
-const friendlyMessage = computed(() =>
-  props.customMessage ?? MESSAGE_MAP[props.errorKind ?? 'unknown'],
-)
-
-const hint = computed(() => HINT_MAP[props.errorKind ?? 'unknown'])
+const friendlyMessage = computed(() => t(`hadith.errors.${props.errorKind}.message`))
+const hint = computed(() => t(`hadith.errors.${props.errorKind}.hint`))
 </script>
