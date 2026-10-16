@@ -1,10 +1,22 @@
 @import "tailwindcss";
 @config "../../tailwind.config.ts";
 
+html[data-text-size="small"] {
+  font-size: 15px;
+}
+
+html[data-text-size="medium"] {
+  font-size: 16px;
+}
+
+html[data-text-size="large"] {
+  font-size: 18px;
+}
+
 body {
   @apply bg-background text-gray-800 transition-colors duration-300;
   font-family: "Cairo", sans-serif;
-  direction: rtl;
+  direction: inherit;
 }
 
 .dark body {
