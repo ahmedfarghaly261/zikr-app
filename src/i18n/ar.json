@@ -14,8 +14,25 @@
     "toggleDarkMode": "تبديل الوضع الليلي"
   },
   "hero": {
-    "subtitle": "السلام عليكم ورحمه الله وبركاته",
-    "cta": "اذكر الله تطمئن قلوبكم"
+    "title": "مساحتك الهادئة للذكر اليومي",
+    "subtitle": "اقرأ القرآن، وتدبر الحديث الشريف، وحافظ على أذكارك، وابقَ على صلة بالصلاة.",
+    "cta": "اقرأ القرآن"
+  },
+  "home": {
+    "setPrayerLocation": "حدد موقعك لعرض مواقيت الصلاة",
+    "quickAccess": "استكشف",
+    "quickAccessDescription": "كل ما تحتاجه لعبادتك اليومية على بُعد خطوة واحدة.",
+    "dailyInspiration": "نفحات يومية",
+    "dailyInspirationDescription": "حديث ودعاء مختاران لهذا اليوم، ويمكنك استكشاف المزيد.",
+    "dailyHadith": "حديث اليوم",
+    "dailyDua": "دعاء اليوم",
+    "showAnotherHadith": "حديث آخر",
+    "showAnotherDua": "دعاء آخر",
+    "browseHadith": "عرض الحديث",
+    "browseDuas": "تصفح الأدعية",
+    "hadithSource": "الأربعون النووية · الحديث رقم {number}",
+    "hadithLoadError": "تعذر تحميل حديث اليوم. يرجى المحاولة مرة أخرى.",
+    "prayerUnavailable": "يلزم تحديد موقعك أولاً لعرض مواقيت الصلاة."
   },
   "footer": {
     "copyright": "© {year} تطبيق ذكر. جميع الحقوق محفوظة."

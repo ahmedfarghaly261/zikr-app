@@ -14,8 +14,25 @@
     "toggleDarkMode": "Toggle Dark Mode"
   },
   "hero": {
-    "subtitle": "A comprehensive app for Islamic remembrances, hadith, prayers, and Quranic verses",
-    "cta": "Get Started"
+    "title": "A peaceful space for daily remembrance",
+    "subtitle": "Read Quran, reflect on authentic Hadith, keep your daily remembrances, and stay connected to prayer.",
+    "cta": "Read the Quran"
+  },
+  "home": {
+    "setPrayerLocation": "Set your location for prayer times",
+    "quickAccess": "Explore",
+    "quickAccessDescription": "Everything you need for your daily worship, one tap away.",
+    "dailyInspiration": "Daily inspiration",
+    "dailyInspirationDescription": "A Hadith and Dua selected for today. You can also discover another.",
+    "dailyHadith": "Hadith of the day",
+    "dailyDua": "Dua of the day",
+    "showAnotherHadith": "Another Hadith",
+    "showAnotherDua": "Another Dua",
+    "browseHadith": "Open Hadith",
+    "browseDuas": "Browse Duas",
+    "hadithSource": "Forty Hadith of an-Nawawi · Hadith {number}",
+    "hadithLoadError": "The daily Hadith could not be loaded. Please try again.",
+    "prayerUnavailable": "Prayer times need your location before they can be shown."
   },
   "footer": {
     "copyright": "© {year} Zikr App. All rights reserved."
@@ -25,7 +42,8 @@
     "confirm": "Confirm",
     "noData": "No data available",
     "loading": "Loading...",
-    "back": "Back"
+    "back": "Back",
+    "browse": "Browse"
   },
   "prayer": {
     "nextPrayer": "Next Prayer",
@@ -82,6 +100,46 @@
       "prophets": "Prophets Duas",
       "quran": "Quranic Duas",
       "prophet": "Prophet's Duas"
+    },
+    "1": {
+      "title": "Dua of Istikhara",
+      "text": "O Allah, I seek the better choice through Your knowledge, and I seek ability through Your power, and I ask You from Your immense bounty. You are capable while I am not, and You know while I do not, and You are the Knower of the unseen.",
+      "source": "Narrated by Al-Bukhari"
+    },
+    "2": {
+      "title": "Dua for worry and grief",
+      "text": "O Allah, I am Your servant, the son of Your servant and the son of Your maidservant. My forelock is in Your hand; Your command over me is forever executed, and Your decree over me is just.",
+      "source": "Narrated by Ahmad"
+    },
+    "3": {
+      "title": "Dua of Prophet Musa",
+      "text": "My Lord, expand for me my chest, ease for me my task, and untie the knot from my tongue so that they may understand my speech.",
+      "source": "Surah Taha"
+    },
+    "4": {
+      "title": "Dua of Prophet Yunus",
+      "text": "There is no deity except You. Glory be to You! Indeed, I have been among the wrongdoers.",
+      "source": "Surah Al-Anbiya"
+    },
+    "5": {
+      "title": "Dua for goodness",
+      "text": "Our Lord, grant us good in this world and good in the Hereafter, and protect us from the torment of the Fire.",
+      "source": "Surah Al-Baqarah"
+    },
+    "6": {
+      "title": "Morning and evening Dua",
+      "text": "O Allah, I have entered the morning calling You, the bearers of Your Throne, Your angels, and all Your creation to witness that You alone are Allah and that there is no deity except You, without partner.",
+      "source": "Narrated by Abu Dawud"
+    },
+    "7": {
+      "title": "Dua for provision",
+      "text": "O Allah, suffice me with what You have made lawful instead of what You have forbidden, and make me independent by Your bounty from all others besides You.",
+      "source": "Narrated by At-Tirmidhi"
+    },
+    "8": {
+      "title": "Dua for relief",
+      "text": "My Lord, I am truly in need of whatever good You send down to me.",
+      "source": "Surah Al-Qasas"
     }
   },
   "quran": {
