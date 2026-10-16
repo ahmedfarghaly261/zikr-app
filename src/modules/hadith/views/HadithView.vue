@@ -1,22 +1,21 @@
 <template>
-  <main dir="rtl" class="max-w-3xl mx-auto px-4 py-8 font-cairo space-y-6">
+  <main class="max-w-3xl mx-auto px-4 py-8 font-cairo space-y-6">
 
     <!-- Page header -->
     <div class="text-center space-y-1">
       <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 font-cairo">
-        الأحاديث النبوية
+        {{ t('hadith.title') }}
       </h1>
       <p class="text-gray-400 dark:text-gray-500 text-sm font-cairo">
-        استعرض الأحاديث النبوية الشريفة من المصادر الأصيلة
+        {{ t('hadith.subtitle') }}
       </p>
     </div>
 
     <!-- Mode tabs -->
     <div
-      dir="rtl"
       class="flex gap-1 p-1 rounded-2xl bg-gray-100 dark:bg-slate-800 border border-gray-200 dark:border-slate-700"
       role="tablist"
-      aria-label="وضع العرض"
+      :aria-label="t('hadith.viewMode')"
     >
       <button
         id="tab-browse"
@@ -31,7 +30,7 @@
         @click="switchMode('browse')"
       >
         <Library :size="16" />
-        <span>عرض الكل</span>
+        <span>{{ t('hadith.browseTab') }}</span>
       </button>
       <button
         id="tab-search"
@@ -46,7 +45,7 @@
         @click="switchMode('search')"
       >
         <Search :size="16" />
-        <span>بحث برقم</span>
+        <span>{{ t('hadith.searchTab') }}</span>
       </button>
     </div>
 
@@ -58,14 +57,13 @@
 
         <!-- Book selector + browse controls -->
         <div
-          dir="rtl"
           class="flex flex-col sm:flex-row gap-3 bg-white dark:bg-slate-800 rounded-2xl
                  border border-gray-100 dark:border-slate-700 p-4 shadow-sm"
         >
           <!-- Book select -->
           <div class="flex-1 min-w-0">
             <label for="browse-book-select" class="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1 font-cairo">
-              الكتاب
+              {{ t('hadith.book') }}
             </label>
             <select
               id="browse-book-select"
@@ -77,7 +75,7 @@
                      disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <option v-for="b in HADITH_BOOKS" :key="b.value" :value="b.value">
-                {{ b.label }}
+                {{ t(`hadith.books.${b.value}`) }}
               </option>
             </select>
           </div>
@@ -85,7 +83,7 @@
           <!-- Text filter -->
           <div class="flex-1 min-w-0">
             <label for="browse-text-filter" class="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1 font-cairo">
-              بحث في النص
+              {{ t('hadith.searchText') }}
             </label>
             <div class="relative">
               <Search class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
@@ -93,7 +91,7 @@
                 id="browse-text-filter"
                 v-model="browseFilter"
                 type="text"
-                placeholder="ابحث في نصوص الأحاديث..."
+                :placeholder="t('hadith.searchTextPlaceholder')"
                 :disabled="collectionLoading"
                 class="w-full pr-9 pl-3 py-2.5 rounded-xl border border-gray-200 dark:border-slate-600
                        bg-gray-50 dark:bg-slate-900 text-gray-800 dark:text-gray-200 font-cairo
@@ -117,7 +115,7 @@
               @click="handleLoadCollection"
             >
               <Download :size="16" />
-              <span>تحميل الكل</span>
+              <span>{{ t('hadith.loadAll') }}</span>
             </button>
           </div>
         </div>
@@ -131,22 +129,15 @@
         <HadithErrorState
           v-else-if="collectionError"
           :error-kind="collectionErrorKind"
-          :custom-message="collectionError"
           :on-retry="handleLoadCollection"
         />
 
         <!-- Results info + list -->
         <template v-else-if="allHadiths.length > 0">
           <!-- Results count -->
-          <div dir="rtl" class="flex items-center justify-between text-xs text-gray-400 dark:text-gray-500 font-cairo px-1">
-            <span>
-              عرض
-              <strong class="text-gray-700 dark:text-gray-300">{{ filteredHadiths.length }}</strong>
-              من أصل
-              <strong class="text-gray-700 dark:text-gray-300">{{ allHadiths.length }}</strong>
-              حديث
-            </span>
-            <span v-if="browseFilter.trim()">نتائج البحث عن "{{ browseFilter.trim() }}"</span>
+          <div class="flex items-center justify-between gap-3 text-xs text-gray-400 dark:text-gray-500 font-cairo px-1">
+            <span>{{ t('hadith.resultsCount', { shown: filteredHadiths.length, total: allHadiths.length }) }}</span>
+            <span v-if="browseFilter.trim()">{{ t('hadith.searchResultsFor', { query: browseFilter.trim() }) }}</span>
           </div>
 
           <!-- Empty search results -->
@@ -156,7 +147,7 @@
           >
             <SearchX class="w-10 h-10 text-gray-300 dark:text-gray-600" />
             <p class="text-gray-400 dark:text-gray-500 font-cairo text-sm">
-              لا توجد أحاديث تطابق البحث
+              {{ t('hadith.noMatches') }}
             </p>
           </div>
 
@@ -166,8 +157,7 @@
               v-for="h in visibleHadiths"
               :key="h.id"
               :hadith="h"
-              @previous="() => {}"
-              @next="() => {}"
+              :show-navigation="false"
             />
           </div>
 
@@ -182,7 +172,7 @@
               @click="loadMore"
             >
               <ChevronDown :size="16" />
-              <span>عرض المزيد ({{ filteredHadiths.length - visibleCount }} متبقٍ)</span>
+              <span>{{ t('hadith.loadMore', { count: filteredHadiths.length - visibleCount }) }}</span>
             </button>
           </div>
         </template>
@@ -193,9 +183,9 @@
             <Library class="w-10 h-10 text-emerald-400 dark:text-emerald-500" />
           </div>
           <div class="space-y-1.5 max-w-xs">
-            <h2 class="text-lg font-bold text-gray-700 dark:text-gray-200 font-cairo">استعرض كامل المجموعة</h2>
+            <h2 class="text-lg font-bold text-gray-700 dark:text-gray-200 font-cairo">{{ t('hadith.browseCollectionTitle') }}</h2>
             <p class="text-sm text-gray-400 dark:text-gray-500 font-cairo leading-relaxed">
-              اختر الكتاب واضغط "تحميل الكل" لعرض جميع الأحاديث مع إمكانية البحث في النصوص.
+              {{ t('hadith.browseCollectionDescription') }}
             </p>
           </div>
         </div>
@@ -224,7 +214,6 @@
           <div v-else-if="searchError" key="error">
             <HadithErrorState
               :error-kind="searchErrorKind"
-              :custom-message="searchError"
               :on-retry="handleRefetch"
             />
           </div>
@@ -250,6 +239,7 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { Search, Library, Download, ChevronDown, SearchX } from 'lucide-vue-next'
 
 import HadithFilters from '../components/HadithFilters.vue'
@@ -266,6 +256,8 @@ import type { ArabicHadithBook } from '../types/hadith.types'
 import { HADITH_BOOKS, VALID_HADITH_BOOKS } from '../constants/hadith-books'
 import { isAppError } from '@/services/api-error'
 import type { ApiErrorKind } from '@/services/api-error'
+
+const { t } = useI18n()
 
 // ─── Mode ─────────────────────────────────────────────────────────────────────
 
