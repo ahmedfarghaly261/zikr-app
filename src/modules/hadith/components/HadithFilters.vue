@@ -1,10 +1,9 @@
 <template>
   <div
-    dir="rtl"
     class="flex flex-col sm:flex-row gap-4 bg-white dark:bg-slate-800 rounded-2xl
            border border-gray-100 dark:border-slate-700 p-5 shadow-sm"
     role="search"
-    aria-label="تصفية الأحاديث"
+    :aria-label="t('hadith.filterAria')"
   >
     <!-- Book selector -->
     <div class="flex-1 min-w-0">
@@ -12,7 +11,7 @@
         for="hadith-book-select"
         class="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1 font-cairo"
       >
-        الكتاب
+        {{ t('hadith.book') }}
       </label>
       <select
         id="hadith-book-select"
@@ -28,7 +27,7 @@
           :key="book.value"
           :value="book.value"
         >
-          {{ book.label }}
+          {{ t(`hadith.books.${book.value}`) }}
         </option>
       </select>
     </div>
@@ -39,7 +38,7 @@
         for="hadith-number-input"
         class="block text-xs font-semibold text-gray-500 dark:text-gray-400 mb-1 font-cairo"
       >
-        رقم الحديث
+        {{ t('hadith.hadithNumber') }}
       </label>
       <input
         id="hadith-number-input"
@@ -48,7 +47,7 @@
         min="1"
         step="1"
         :disabled="isLoading"
-        :placeholder="'أدخل رقم الحديث'"
+        :placeholder="t('hadith.hadithNumberPlaceholder')"
         class="w-full px-3 py-2.5 rounded-xl border border-gray-200 dark:border-slate-600
                bg-gray-50 dark:bg-slate-900 text-gray-800 dark:text-gray-200 font-cairo
                focus:outline-none focus:ring-2 focus:ring-emerald-400 transition-all text-sm
@@ -61,7 +60,7 @@
         class="mt-1 text-xs text-red-500 dark:text-red-400 font-cairo"
         role="alert"
       >
-        {{ validationError }}
+        {{ t('hadith.invalidNumber') }}
       </p>
     </div>
 
@@ -77,10 +76,10 @@
                disabled:opacity-60 disabled:cursor-not-allowed transition-colors
                focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2"
         @click="handleSearch"
-        aria-label="تحميل الحديث"
+        :aria-label="t('hadith.load')"
       >
         <Search :size="16" />
-        <span>تحميل</span>
+        <span>{{ t('hadith.load') }}</span>
       </button>
 
       <!-- Random button -->
@@ -94,10 +93,10 @@
                disabled:opacity-60 disabled:cursor-not-allowed transition-colors
                focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2"
         @click="handleRandom"
-        aria-label="حديث عشوائي"
+        :aria-label="t('hadith.random')"
       >
         <Shuffle :size="16" />
-        <span>عشوائي</span>
+        <span>{{ t('hadith.random') }}</span>
       </button>
     </div>
   </div>
@@ -105,6 +104,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { Search, Shuffle } from 'lucide-vue-next'
 import { HADITH_BOOKS } from '../constants/hadith-books'
 import type { ArabicHadithBook } from '../types/hadith.types'
@@ -121,6 +121,8 @@ const props = withDefaults(defineProps<Props>(), {
   isLoading: false,
 })
 
+const { t } = useI18n()
+
 const emit = defineEmits<{
   search: [book: ArabicHadithBook, hadithNumber: number]
   random: [book: ArabicHadithBook]
@@ -130,7 +132,7 @@ const emit = defineEmits<{
 
 const localBook = ref<ArabicHadithBook>(props.modelBook)
 const localHadithNumber = ref<number>(props.modelHadithNumber)
-const validationError = ref<string | null>(null)
+const validationError = ref(false)
 
 // Keep local state in sync when parent changes (e.g. from route navigation)
 watch(() => props.modelBook, (v) => { localBook.value = v })
@@ -141,10 +143,10 @@ watch(() => props.modelHadithNumber, (v) => { localHadithNumber.value = v })
 function validateInput(): boolean {
   const n = localHadithNumber.value
   if (!Number.isFinite(n) || !Number.isInteger(n) || n < 1) {
-    validationError.value = 'رقم الحديث غير صالح. يجب أن يكون عدداً صحيحاً موجباً.'
+    validationError.value = true
     return false
   }
-  validationError.value = null
+  validationError.value = false
   return true
 }
 
@@ -156,7 +158,7 @@ function handleSearch(): void {
 }
 
 function handleRandom(): void {
-  validationError.value = null
+  validationError.value = false
   emit('random', localBook.value)
 }
 </script>

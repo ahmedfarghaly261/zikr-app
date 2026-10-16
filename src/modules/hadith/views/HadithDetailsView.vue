@@ -1,6 +1,5 @@
 <template>
   <main
-    dir="rtl"
     class="max-w-3xl mx-auto px-4 py-8 font-cairo space-y-6"
   >
     <!-- Back navigation -->
@@ -10,10 +9,10 @@
         class="inline-flex items-center gap-1.5 text-sm font-cairo text-emerald-600 dark:text-emerald-400
                hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors
                focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded"
-        aria-label="العودة إلى الأحاديث"
+        :aria-label="t('hadith.backToHadith')"
       >
         <ChevronLeft :size="16" />
-        <span>العودة</span>
+        <span>{{ t('common.back') }}</span>
       </RouterLink>
     </div>
 
@@ -26,7 +25,6 @@
       <div v-else-if="error" key="error">
         <HadithErrorState
           :error-kind="currentErrorKind"
-          :custom-message="error"
           :on-retry="() => fetchHadith()"
         />
       </div>
@@ -45,8 +43,9 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { ChevronLeft } from 'lucide-vue-next'
 import HadithCard from '../components/HadithCard.vue'
 import HadithCardSkeleton from '../components/HadithCardSkeleton.vue'
@@ -66,6 +65,7 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+const { t } = useI18n()
 
 // ─── Validate route props ─────────────────────────────────────────────────────
 
@@ -114,9 +114,11 @@ async function fetchHadith(): Promise<void> {
   }
 }
 
-onMounted(() => {
-  fetchHadith()
-})
+watch(
+  () => [props.book, props.hadithNumber],
+  () => fetchHadith(),
+  { immediate: true },
+)
 
 // ─── Navigation ───────────────────────────────────────────────────────────────
 
