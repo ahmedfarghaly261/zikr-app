@@ -1,6 +1,36 @@
 import { ref } from 'vue'
 import type { Surah, SurahDetail } from '@/modules/quran/types/quran.types'
 
+const QURAN_API_BASE_URL = 'https://quranapi.pages.dev/api'
+const ALAFASY_AUDIO_BASE_URL = 'https://the-quran-project.github.io/Quran-Audio/Data/1'
+
+interface QuranApiSurah {
+  surahName: string
+  surahNameArabicLong: string
+  surahNameTranslation: string
+  revelationPlace: 'Mecca' | 'Madina'
+  totalAyah: number
+}
+
+interface QuranApiSurahDetail extends QuranApiSurah {
+  surahNo: number
+  arabic1: string[]
+}
+
+async function fetchQuranApi<T>(path: string): Promise<T> {
+  const response = await fetch(`${QURAN_API_BASE_URL}${path}`)
+
+  if (!response.ok) {
+    throw new Error(`Quran API request failed with status ${response.status}`)
+  }
+
+  return response.json() as Promise<T>
+}
+
+function toRevelationType(place: QuranApiSurah['revelationPlace']) {
+  return place === 'Mecca' ? 'Meccan' : 'Medinan'
+}
+
 export function useSurahs() {
   const surahs = ref<Surah[]>([])
   const loading = ref(false)
@@ -10,9 +40,15 @@ export function useSurahs() {
     loading.value = true
     error.value = null
     try {
-      const res = await fetch('https://api.alquran.cloud/v1/surah')
-      const json = await res.json()
-      surahs.value = json.data
+      const data = await fetchQuranApi<QuranApiSurah[]>('/surah.json')
+      surahs.value = data.map((item, index) => ({
+        number: index + 1,
+        name: item.surahNameArabicLong,
+        englishName: item.surahName,
+        englishNameTranslation: item.surahNameTranslation,
+        numberOfAyahs: item.totalAyah,
+        revelationType: toRevelationType(item.revelationPlace),
+      }))
     } catch {
       error.value = 'فشل تحميل السور'
     } finally {
@@ -33,28 +69,20 @@ export function useSurahDetail() {
     error.value   = null
     surah.value   = null
     try {
-      // fetch arabic text + audio in one call using editions
-      const res  = await fetch(
-        `https://api.alquran.cloud/v1/surah/${number}/editions/quran-uthmani,ar.alafasy`
-      )
-      const json = await res.json()
-
-      // data[0] = arabic text, data[1] = audio
-      const textEdition  = json.data[0]
-      const audioEdition = json.data[1]
+      const data = await fetchQuranApi<QuranApiSurahDetail>(`/${number}.json`)
 
       surah.value = {
-        number:                 textEdition.number,
-        name:                   textEdition.name,
-        englishName:            textEdition.englishName,
-        englishNameTranslation: textEdition.englishNameTranslation,
-        numberOfAyahs:          textEdition.numberOfAyahs,
-        revelationType:         textEdition.revelationType,
-        ayahs: textEdition.ayahs.map((ayah: any, i: number) => ({
-          number:         ayah.number,
-          numberInSurah:  ayah.numberInSurah,
-          text:           ayah.text,
-          audio:          audioEdition.ayahs[i]?.audio ?? '',
+        number: data.surahNo,
+        name: data.surahNameArabicLong,
+        englishName: data.surahName,
+        englishNameTranslation: data.surahNameTranslation,
+        numberOfAyahs: data.totalAyah,
+        revelationType: toRevelationType(data.revelationPlace),
+        ayahs: data.arabic1.map((text, index) => ({
+          number: index + 1,
+          numberInSurah: index + 1,
+          text,
+          audio: `${ALAFASY_AUDIO_BASE_URL}/${number}_${index + 1}.mp3`,
         })),
       }
     } catch {
