@@ -1,10 +1,9 @@
 <template>
   <div
-    dir="rtl"
     class="bg-white dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-slate-700
            shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden"
     role="article"
-    :aria-label="`حديث رقم ${hadith.hadithNumber} من ${hadith.bookName}`"
+    :aria-label="t('hadith.cardAria', { number: hadith.hadithNumber, book: hadith.bookName })"
   >
     <!-- Card Header -->
     <div class="flex items-center justify-between px-5 py-4 border-b border-gray-100 dark:border-slate-700 bg-emerald-50/60 dark:bg-emerald-900/20">
@@ -50,9 +49,9 @@
       >
         <BookOpen :size="14" class="shrink-0" />
         <span>
-          <span v-if="hadith.reference.bookNumber">كتاب {{ hadith.reference.bookNumber }}</span>
+          <span v-if="hadith.reference.bookNumber">{{ t('hadith.bookReference', { number: hadith.reference.bookNumber }) }}</span>
           <span v-if="hadith.reference.bookNumber && hadith.reference.hadithNumber"> · </span>
-          <span v-if="hadith.reference.hadithNumber">حديث {{ hadith.reference.hadithNumber }}</span>
+          <span v-if="hadith.reference.hadithNumber">{{ t('hadith.hadithReference', { number: hadith.reference.hadithNumber }) }}</span>
         </span>
       </div>
 
@@ -71,19 +70,19 @@
         v-else
         class="text-xs text-gray-400 dark:text-gray-500 font-cairo"
       >
-        درجة الحديث غير متوفرة في المصدر
+        {{ t('hadith.gradeUnavailable') }}
       </p>
 
       <!-- Attribution -->
       <p class="text-xs text-gray-400 dark:text-gray-500 font-cairo">
-        المصدر: Fawaz Ahmed Hadith API
+        {{ t('hadith.sourceAttribution') }}
       </p>
     </div>
 
     <!-- Action bar: copy / share / nav -->
-    <div class="flex items-center justify-between gap-2 px-5 py-3 border-t border-gray-100 dark:border-slate-700 bg-gray-50/50 dark:bg-slate-900/20">
+    <div class="flex flex-wrap items-center justify-between gap-2 px-5 py-3 border-t border-gray-100 dark:border-slate-700 bg-gray-50/50 dark:bg-slate-900/20">
       <!-- Navigation buttons -->
-      <div class="flex items-center gap-2">
+      <div v-if="showNavigation" class="flex items-center gap-2">
         <button
           @click="emit('next')"
           class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-sm font-cairo font-medium
@@ -91,10 +90,10 @@
                  hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors focus:outline-none
                  focus-visible:ring-2 focus-visible:ring-emerald-400"
           type="button"
-          aria-label="الحديث التالي"
+          :aria-label="t('hadith.next')"
         >
           <ChevronRight :size="16" />
-          <span>التالي</span>
+          <span>{{ t('hadith.next') }}</span>
         </button>
         <button
           @click="emit('previous')"
@@ -103,9 +102,9 @@
                  hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors focus:outline-none
                  focus-visible:ring-2 focus-visible:ring-emerald-400"
           type="button"
-          aria-label="الحديث السابق"
+          :aria-label="t('hadith.previous')"
         >
-          <span>السابق</span>
+          <span>{{ t('hadith.previous') }}</span>
           <ChevronLeft :size="16" />
         </button>
       </div>
@@ -119,7 +118,7 @@
             class="text-xs font-cairo"
             :class="copyStatus === 'success' ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-500'"
           >
-            {{ copyStatus === 'success' ? 'تم النسخ ✓' : 'تعذر النسخ' }}
+            {{ copyStatus === 'success' ? t('hadith.copySuccess') : t('hadith.copyError') }}
           </span>
         </Transition>
 
@@ -130,10 +129,10 @@
                  hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors focus:outline-none
                  focus-visible:ring-2 focus-visible:ring-emerald-400"
           type="button"
-          aria-label="نسخ الحديث"
+          :aria-label="t('hadith.copy')"
         >
           <Copy :size="15" />
-          <span>نسخ</span>
+          <span>{{ t('hadith.copy') }}</span>
         </button>
 
         <button
@@ -143,10 +142,10 @@
                  hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors focus:outline-none
                  focus-visible:ring-2 focus-visible:ring-emerald-400"
           type="button"
-          aria-label="مشاركة الحديث"
+          :aria-label="t('hadith.share')"
         >
           <Share2 :size="15" />
-          <span>مشاركة</span>
+          <span>{{ t('hadith.share') }}</span>
         </button>
       </div>
     </div>
@@ -155,6 +154,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { BookOpen, ChevronLeft, ChevronRight, Copy, Share2 } from 'lucide-vue-next'
 import type { HadithModel } from '../models/hadith.model'
 
@@ -162,9 +162,14 @@ import type { HadithModel } from '../models/hadith.model'
 
 interface Props {
   hadith: HadithModel
+  showNavigation?: boolean
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  showNavigation: true,
+})
+
+const { t } = useI18n()
 
 const emit = defineEmits<{
   previous: []
@@ -174,7 +179,7 @@ const emit = defineEmits<{
 // ─── Copy text builder ────────────────────────────────────────────────────────
 
 function buildShareText(): string {
-  return `${props.hadith.text}\n\nالمصدر: ${props.hadith.bookName}\nرقم الحديث: ${props.hadith.hadithNumber}`
+  return `${props.hadith.text}\n\n${t('hadith.shareSource')}: ${props.hadith.bookName}\n${t('hadith.shareHadithNumber')}: ${props.hadith.hadithNumber}`
 }
 
 // ─── Copy functionality ───────────────────────────────────────────────────────
@@ -231,7 +236,7 @@ async function handleShare(): Promise<void> {
   if (typeof navigator.share === 'function') {
     try {
       await navigator.share({
-        title: `حديث من ${props.hadith.bookName}`,
+        title: t('hadith.shareTitle', { book: props.hadith.bookName }),
         text,
       })
       return

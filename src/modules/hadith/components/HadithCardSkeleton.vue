@@ -1,9 +1,8 @@
 <template>
   <div
-    dir="rtl"
     class="bg-white dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-slate-700
            shadow-sm overflow-hidden animate-pulse"
-    aria-label="جاري تحميل الحديث..."
+    :aria-label="t('hadith.loading')"
     aria-busy="true"
   >
     <!-- Header skeleton -->
@@ -48,5 +47,7 @@
 </template>
 
 <script setup lang="ts">
-// Purely presentational — no logic needed
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 </script>
