@@ -46,6 +46,11 @@ const routes: RouteRecordRaw[] = [
         name: 'Surah',
         component: () => import('@/modules/quran/views/SurahView.vue'),
       },
+      {
+        path: 'preferences',
+        name: 'Preferences',
+        component: () => import('@/modules/preferences/views/PreferencesView.vue'),
+      },
     ],
   },
 ]
